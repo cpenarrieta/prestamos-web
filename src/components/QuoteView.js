@@ -66,7 +66,7 @@ function QuoteView(props) {
         </div>
         <div className="quote-paper-item quote-paper-row">
           <i className="material-icons quote-icon">event</i>
-          <DatePicker className="" floatingLabelText="Fecha de Emision de Dni" hintText="Fecha de Emision de Dni" mode="landscape" value={fechaEmision} onChange={handleFechaEmision} />
+          <DatePicker className="" floatingLabelText="Fecha de Emision de Dni" hintText="Fecha de Emision de Dni" value={fechaEmision} onChange={handleFechaEmision} />
         </div>
         <div className="quote-paper-item quote-paper-row">
           <i className="material-icons quote-icon">email</i>
