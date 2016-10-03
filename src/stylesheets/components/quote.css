@@ -1,0 +1,68 @@
+.quote {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.quote-paper {
+  width: 850px;
+  height: 800px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.quote-paper h2 {
+  color: #00BCD4;
+}
+
+.quote-paper-item {
+  align-self: center;
+}
+
+.btn-quote {
+  margin-top: 60px;
+}
+
+.monedas,
+.quote-amounts {
+  margin-top: 20px;
+}
+
+.quote-paper-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.quote-icon {
+  color: #00BCD4;
+  margin-right: 15px;
+  font-size: 30px;
+  position: relative;
+  top: 32px;
+}
+
+.quote-slider {
+  width: 100%;
+}
+
+.quote-slider-item {
+  width: 80%;
+}
+
+.quote-text {
+  position: relative;
+  top: 20px;
+  color: #FF4081;
+}
+
+.slider-hidden {
+  display: none;
+}
+
+.fecha-emision {
+  height: 72px;
+  position: relative;
+  top: 20px;
+}
