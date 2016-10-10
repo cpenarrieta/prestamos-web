@@ -63,7 +63,7 @@ class QuoteItem extends Component {
           open={this.state.selOpen}
           onRequestClose={this.handleSelClose}
         >
-          Al continuar, un funcionario del banco seleccionado se comunicara con usted en menos de 48 horas.
+          Al continuar, recibirá un codigo unico de pre-aprobación.
         </Dialog>
         <Dialog
           title="Detalle de cuotas"
