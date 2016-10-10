@@ -2,10 +2,14 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import LoginView from '../components/LoginView';
 import actions from '../actions';
+import HeaderNavContainer from '../containers/HeaderNavContainer';
 
 function LoginContainer(props) {
   return (
-    <LoginView {...props} />
+    <div>
+      <HeaderNavContainer isLogin />
+      <LoginView {...props} />
+    </div>
   );
 }
 
@@ -15,17 +19,19 @@ function mapStateToProps({auth}) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    setUsername: (username) => dispatch(actions.setUsername(username)),
-    setPassword: (password) => dispatch(actions.setPassword(password)),
-    submitLogin: () => dispatch(actions.submitLogin()),
-    signin: (username, password, nextPath) => dispatch(actions.signin(username, password, nextPath))
+    updateDni: (dni) => dispatch(actions.updateDni(dni)),
+    updateEmail: (email) => dispatch(actions.updateEmail(email)),
+    updateCelular: (celular) => dispatch(actions.updateCelular(celular)),
+    signin: (user) => dispatch(actions.signin(user)),
+    updateUbigeo: (ubigeo) => dispatch(actions.updateUbigeo(ubigeo)),
+    updateFechaEmision: (fechaEmision) => dispatch(actions.updateFechaEmision(fechaEmision)),
+    updateFechaNacimiento: (fechaNacimiento) => dispatch(actions.updateFechaNacimiento(fechaNacimiento)),
+    updateApellidos: (apellidos) => dispatch(actions.updateApellidos(apellidos)),
+    updateNombre: (nombre) => dispatch(actions.updateNombre(nombre)),
   };
 }
 
 LoginContainer.propTypes = {
-  setUsername: PropTypes.func.isRequired,
-  setPassword: PropTypes.func.isRequired,
-  submitLogin: PropTypes.func.isRequired,
   signin: PropTypes.func.isRequired,
 };
 

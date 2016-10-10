@@ -1,5 +1,3 @@
-import { } from '../actions/synchronous/headerNav';
-
 const initialState = {
 };
 

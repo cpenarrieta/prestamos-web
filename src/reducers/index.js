@@ -4,11 +4,11 @@ import headerNav from './headerNav';
 import auth from './auth';
 import quote from './quote';
 
-const chelaVipApp = combineReducers({
+const appReducer = combineReducers({
   config,
   headerNav,
   auth,
   quote
 });
 
-export default chelaVipApp
+export default appReducer

@@ -1,24 +1,13 @@
-export const UPDATE_FIELD_DNI = 'quote/UPDATE_FIELD_DNI';
-export const UPDATE_FIELD_CELULAR = 'quote/UPDATE_FIELD_CELULAR';
-export const UPDATE_FIELD_EMAIL = 'quote/UPDATE_FIELD_EMAIL';
 export const UPDATE_QUOTE = 'quote/UPDATE_QUOTE';
 export const UPDATE_MONEDA = 'quote/UPDATE_MONEDA';
+export const UPDATE_CUOTAS_DOBLES = 'quote/UPDATE_CUOTAS_DOBLES';
+export const UPDATE_CUOTAS = 'quote/UPDATE_CUOTAS';
 export const UPDATE_SHOW_SLIDER = 'quote/UPDATE_SHOW_SLIDER';
-export const UPDATE_UBIGEO = 'quote/UPDATE_UBIGEO';
-export const UPDATE_FECHA_EMISION = 'quote/UPDATE_FECHA_EMISION';
-
-
-export function updateDni(dni) {
-  return { type: UPDATE_FIELD_DNI, dni };
-}
-
-export function updateCelular(celular) {
-  return { type: UPDATE_FIELD_CELULAR, celular };
-}
-
-export function updateEmail(email) {
-  return { type: UPDATE_FIELD_EMAIL, email };
-}
+export const START_QUOTE_SUBMIT = 'quote/START_QUOTE_SUBMIT';
+export const DONE_QUOTE_SUBMIT = 'quote/DONE_QUOTE_SUBMIT';
+export const START_FINISH_QUOTE = 'quote/START_FINISH_QUOTE';
+export const DONE_FINISH_QUOTE = 'quote/DONE_FINISH_QUOTE';
+export const USER_LOGOUT = 'quote/USER_LOGOUT';
 
 export function updateQuote(quote, hideSlider) {
   return { type: UPDATE_QUOTE, quote, hideSlider };
@@ -32,10 +21,30 @@ export function updateShowSlider() {
   return { type: UPDATE_SHOW_SLIDER };
 }
 
-export function updateUbigeo(ubigeo) {
-  return { type: UPDATE_UBIGEO, ubigeo };
+export function updateCuotasDobles() {
+  return { type: UPDATE_CUOTAS_DOBLES };
 }
 
-export function updateFechaEmision(fechaEmision) {
-  return { type: UPDATE_FECHA_EMISION, fechaEmision };
+export function updateCuotas(cuotas) {
+  return { type: UPDATE_CUOTAS, cuotas };
+}
+
+export function startQuoteSubmit() {
+  return { type: START_QUOTE_SUBMIT };
+}
+
+export function doneQuoteSubmit(quotesResults) {
+  return { type: DONE_QUOTE_SUBMIT, quotesResults };
+}
+
+export function startFinishQuote() {
+  return { type: START_FINISH_QUOTE };
+}
+
+export function doneFinishQuote(result) {
+  return { type: DONE_FINISH_QUOTE, result };
+}
+
+export function userLogOut() {
+  return { type: USER_LOGOUT };
 }

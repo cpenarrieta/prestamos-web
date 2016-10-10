@@ -1,2 +1,43 @@
 .login {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.login-paper {
+  width: 850px;
+  height: 550px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-paper h2 {
+  color: #00BCD4;
+}
+
+.login-paper-item {
+  align-self: center;
+}
+
+.login-paper-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.login-icon {
+  color: #00BCD4;
+  margin-right: 15px;
+  font-size: 30px;
+  position: relative;
+  top: 32px;
+}
+
+.clicable {
+  cursor: pointer;
+}
+
+.btn-login {
+  margin-top: 60px;
 }

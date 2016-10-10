@@ -3,19 +3,19 @@ import sync from '../synchronous';
 import persistAuthToken from './persistAuthToken';
 import { browserHistory } from 'react-router';
 
-export default function signin(username, password, nextPath) {
+export default function signin(user, nextPath) {
   return (dispatch, getState) => {
     const { apiUrl } = getState().config;
     const url = `${apiUrl}/auth/signin/`;
 
     dispatch(sync.submitLogin());
 
-    xr.post(url, { username, password })
+    xr.post(url, user)
       .then(
         (response) => {
           const token = response.data.token;
-          const user = response.data.user;
-          dispatch(sync.receiveUser(user));
+          const userReceived = response.data.user;
+          dispatch(sync.receiveUser(userReceived));
           dispatch(persistAuthToken(token));
           browserHistory.push(nextPath || '/');
         },

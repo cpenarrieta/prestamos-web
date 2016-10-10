@@ -15,14 +15,13 @@ function mapStateToProps({quote}) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    updateDni: (dni) => dispatch(actions.updateDni(dni)),
-    updateEmail: (email) => dispatch(actions.updateEmail(email)),
-    updateCelular: (celular) => dispatch(actions.updateCelular(celular)),
     updateQuote: (quote, hideSlider) => dispatch(actions.updateQuote(quote, hideSlider)),
     updateMoneda: (moneda) => dispatch(actions.updateMoneda(moneda)),
+    updateCuotas: (cuotas) => dispatch(actions.updateCuotas(cuotas)),
+    updateCuotasDobles: () => dispatch(actions.updateCuotasDobles()),
     updateShowSlider: () => dispatch(actions.updateShowSlider()),
-    updateUbigeo: (ubigeo) => dispatch(actions.updateUbigeo(ubigeo)),
-    updateFechaEmision: (fechaEmision) => dispatch(actions.updateFechaEmision(fechaEmision)),
+    quoteSubmit: (request) => dispatch(actions.quoteSubmit(request)),
+    finishQuote: (request) => dispatch(actions.finishQuote(request)),
   };
 }
 

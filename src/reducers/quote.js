@@ -1,52 +1,30 @@
 import {
-  UPDATE_FIELD_DNI,
-  UPDATE_FIELD_CELULAR,
-  UPDATE_FIELD_EMAIL,
   UPDATE_QUOTE,
   UPDATE_MONEDA,
   UPDATE_SHOW_SLIDER,
-  UPDATE_UBIGEO,
-  UPDATE_FECHA_EMISION
+  UPDATE_CUOTAS_DOBLES,
+  UPDATE_CUOTAS,
+  START_QUOTE_SUBMIT,
+  DONE_QUOTE_SUBMIT,
+  START_FINISH_QUOTE,
+  DONE_FINISH_QUOTE,
+  USER_LOGOUT,
 } from '../actions/synchronous/quote';
 
 const initialState = {
-  dni: "",
-  email: "",
-  celular: "",
-  ubigeo: "",
-  fechaEmision: null,
   quoteSelected: 50000,
   quotes: [5000, 10000, 20000, 30000, 50000, 100000, 150000],
   moneda: "S/.",
-  showSlider: false
+  showSlider: false,
+  cuotasDobles: false,
+  cuotas: 24,
+  submitting: false,
+  quotesResults: [],
+  finishResults: null
 };
 
 function quote(state = initialState, action) {
   switch (action.type) {
-    case UPDATE_FIELD_DNI: {
-      if (action.dni.length > 8) {
-        action.dni = state.dni;
-      }
-      return {...state, dni: action.dni};
-    }
-    case UPDATE_UBIGEO: {
-      if (action.ubigeo.length > 6) {
-        action.ubigeo = state.ubigeo;
-      }
-      return {...state, ubigeo: action.ubigeo};
-    }
-    case UPDATE_FIELD_CELULAR: {
-      if (action.celular.length > 9) {
-        action.celular = state.celular;
-      }
-      return {...state, celular: action.celular};
-    }
-    case UPDATE_FIELD_EMAIL: {
-      return {...state, email: action.email};
-    }
-    case UPDATE_FECHA_EMISION: {
-      return {...state, fechaEmision: action.fechaEmision};
-    }
     case UPDATE_QUOTE: {
       return {...state, quoteSelected: action.quote, showSlider: action.hideSlider ? false : true};
     }
@@ -55,6 +33,27 @@ function quote(state = initialState, action) {
     }
     case UPDATE_SHOW_SLIDER: {
       return {...state, showSlider: true};
+    }
+    case UPDATE_CUOTAS_DOBLES: {
+      return {...state, cuotasDobles: !state.cuotasDobles};
+    }
+    case UPDATE_CUOTAS: {
+      return {...state, cuotas: action.cuotas};
+    }
+    case START_QUOTE_SUBMIT: {
+      return {...state, submitting: true};
+    }
+    case DONE_QUOTE_SUBMIT: {
+      return {...state, submitting: false, quotesResults: action.quotesResults};
+    }
+    case START_FINISH_QUOTE: {
+      return {...state, submitting: true};
+    }
+    case DONE_FINISH_QUOTE: {
+      return {...state, submitting: false, finishResults: action.result};
+    }
+    case USER_LOGOUT: {
+      return initialState;
     }
     default:
       return state;

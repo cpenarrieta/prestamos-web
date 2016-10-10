@@ -6,7 +6,8 @@
 
 .quote-paper {
   width: 850px;
-  height: 800px;
+  min-height: 600px;
+  height: 100%;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -21,7 +22,8 @@
 }
 
 .btn-quote {
-  margin-top: 60px;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 .monedas,
@@ -65,4 +67,34 @@
   height: 72px;
   position: relative;
   top: 20px;
+}
+
+.moneda-text {
+  align-self: center;
+  color: #BDBDBD;
+}
+
+.quote-results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding-top: 33px;
+}
+
+.quote-results-item {
+  width: 350px;
+  height: 220px;
+  margin: 10px;
+}
+
+.quote-results-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.bank-img {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 87px;
 }

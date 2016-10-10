@@ -1,0 +1,18 @@
+.finish-quote {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.finish-quote-paper {
+  width: 500px;
+  min-height: 450px;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.finish-quote-paper-item {
+  align-self: center;
+}
