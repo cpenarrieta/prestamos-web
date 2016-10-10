@@ -48,13 +48,14 @@ function QuoteView(props) {
   return (
     <div className="quote">
       <Paper zDepth={2} rounded={false} className="quote-paper" >
-      <h2 className="quote-paper-item">Cotice su Prestamo</h2>
+      <h2 className="quote-paper-item">Cotice su Préstamo</h2>
         <div className="quote-paper-item quote-paper-row monedas">
           <span className="moneda-text">Moneda</span>
           <FlatButton label="S/." primary={!(moneda === "S/.")} secondary={moneda === "S/."} onTouchTap={(e) => handleUpdateMoneda(e, "S/.")} />
           <FlatButton label="$" primary={!(moneda === "$")} secondary={moneda === "$"} onTouchTap={(e) => handleUpdateMoneda(e, "$")} />
         </div>
         <div className="quote-paper-item quote-paper-row quote-amounts">
+          <span className="moneda-text">Monto del Prestamo</span>
           {
             _.map(quotes, (quote, key) => {
               const isSelected = quoteSelected === quote;
@@ -65,11 +66,12 @@ function QuoteView(props) {
         </div>
         <div className={`quote-paper-item quote-paper-row quote-slider ${showSlider ? "" : "slider-hidden"}`}>
           <span className="quote-text">{`${moneda} ${formatNum(quoteSelected)}`}</span>
-          <Slider className="quote-slider-item" step={1000} value={quoteSelected} min={5000} max={150000} onChange={handleOnChangeQuote} />
+          <Slider className="quote-slider-item" step={1000} value={quoteSelected} min={5000} max={300000} onChange={handleOnChangeQuote} />
         </div>
         <div className="quote-paper-item quote-paper-row quote-slider">
-          <span className="quote-text">{cuotas} cuotas</span>
-          <Slider className="quote-slider-item" step={1} value={cuotas} min={3} max={60} onChange={handleOnChangeCuotas} />
+          <span className="moneda-text text-center">Numero de cuotas</span>
+          <span className="quote-text">{cuotas}</span>
+          <Slider className="quote-slider-item-cuotas" step={1} value={cuotas} min={3} max={60} onChange={handleOnChangeCuotas} />
         </div>
         <div className="quote-paper-item quote-paper-row">
           <Toggle label="Cuotas Dobles (Julio / Diciembre)" defaultToggled={cuotasDobles} onToggle={handleOnChangeCuotasDobles} labelStyle={{color: "#BDBDBD"}} />

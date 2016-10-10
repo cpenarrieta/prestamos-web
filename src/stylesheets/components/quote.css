@@ -53,10 +53,19 @@
   width: 80%;
 }
 
+.quote-slider-item-cuotas {
+  width: 75%;
+}
+
 .quote-text {
   position: relative;
   top: 20px;
   color: #FF4081;
+}
+
+.text-center {
+  position: relative;
+  top: -14px;
 }
 
 .slider-hidden {

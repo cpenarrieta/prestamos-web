@@ -13,7 +13,7 @@ import {
 
 const initialState = {
   quoteSelected: 50000,
-  quotes: [5000, 10000, 20000, 30000, 50000, 100000, 150000],
+  quotes: [5000, 10000, 20000, 30000, 50000, 100000, 150000, 200000, 250000, 300000],
   moneda: "S/.",
   showSlider: false,
   cuotasDobles: false,

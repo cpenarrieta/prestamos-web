@@ -49,8 +49,8 @@ class QuoteItem extends Component {
           <CardMedia className="bank-img">
             <img src={imgBank} alt={quote.bank} />
           </CardMedia>
-          <CardTitle title={`${quote.currency} ${numeral(quote.quote).format('0,0')}`}
-            subtitle={numeral(quote.rate).format('0.0 %')} />
+          <CardTitle title={`Cuota ${quote.currency} ${numeral(quote.quote).format('0,0')}`}
+            subtitle={`TEA ${numeral(quote.rate).format('0.00 %')}`} />
           <CardActions className="quote-results-buttons" >
             <FlatButton label="Detalle" onTouchTap={this.handleDetalleOpen} primary={true} />
             <RaisedButton label="Seleccionar" onTouchTap={this.handleSelOpen} primary={true} style={{marginRight: 0}} />
