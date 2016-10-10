@@ -16,7 +16,7 @@ export default function finishQuote(request) {
       .then(
         (response) => {
           dispatch(sync.doneFinishQuote(response.data));
-          browserHistory.push('/done-quote');
+          browserHistory.push('/done-cotizacion');
         },
         (errorResponse) => {
           const { status, response } = errorResponse;

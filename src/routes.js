@@ -33,9 +33,9 @@ function routes(store) {
   return (
     <Router history={browserHistory} >
       <Route path="/" component={App} store={store} onEnter={(nextState, replace) => requireAuth(nextState, replace, store)} >
-        <IndexRedirect to="/quote" />
-        <Route path="/quote" component={QuoteViewContainer} />
-        <Route path="/done-quote" component={FinishQuoteViewContainer} onEnter={(nextState, replace) => redirectIfNull(replace, store) } />
+        <IndexRedirect to="/cotizacion" />
+        <Route path="/cotizacion" component={QuoteViewContainer} />
+        <Route path="/done-cotizacion" component={FinishQuoteViewContainer} onEnter={(nextState, replace) => redirectIfNull(replace, store) } />
       </Route>
       <Route path="/login" component={LoginContainer} onEnter={(nextState, replace) => redirectIfLoggedIn(replace, store) }/>
     </Router>
