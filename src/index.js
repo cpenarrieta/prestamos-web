@@ -20,7 +20,8 @@ function preRenderActions() {
 
 function validateAuth(callback) {
   const { token } = Cookies.getJSON('auth') || {};
-
+  // const { bankToken } = Cookies.getJSON('bankAuth') || {};
+  // TODO bank
   if (token) {
     const { apiUrl } = store.getState().config;
     const url = `${apiUrl}/api/users/me`;
