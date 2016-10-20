@@ -4,7 +4,7 @@ import React, { PropTypes } from 'react';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 
 function DetailsTable(props) {
-  const {details} = props;
+  const {details, quote, currency} = props;
 
   return (
     <Table fixedHeader={true} selectable={false} height={"300px"}>
@@ -12,10 +12,10 @@ function DetailsTable(props) {
         <TableRow>
           <TableHeaderColumn># Cuota</TableHeaderColumn>
           <TableHeaderColumn>Fecha</TableHeaderColumn>
-          <TableHeaderColumn>Interes</TableHeaderColumn>
-          <TableHeaderColumn>Amortización</TableHeaderColumn>
-          <TableHeaderColumn>Cuota</TableHeaderColumn>
-          <TableHeaderColumn>Saldo</TableHeaderColumn>
+          <TableHeaderColumn>{`Interes (${currency})`}</TableHeaderColumn>
+          <TableHeaderColumn>{`Amortización (${currency})`}</TableHeaderColumn>
+          <TableHeaderColumn>{`Cuota (${currency})`}</TableHeaderColumn>
+          <TableHeaderColumn>{`Saldo (${currency})`}</TableHeaderColumn>
         </TableRow>
       </TableHeader>
       <TableBody displayRowCheckbox={false}>
@@ -23,12 +23,12 @@ function DetailsTable(props) {
         _.map(details, (d, key) => {
           return (
             <TableRow key={key}>
-              <TableRowColumn>{d.numCuota}</TableRowColumn>
-              <TableRowColumn>{d.fecha}</TableRowColumn>
-              <TableRowColumn>{numeral(d.intereses).format('0,0.0')}</TableRowColumn>
-              <TableRowColumn>{numeral(d.amortizacion).format('0,0.0')}</TableRowColumn>
-              <TableRowColumn>{numeral(d.cuota).format('0,0.0')}</TableRowColumn>
-              <TableRowColumn>{numeral(d.saldo).format('0,0.0')}</TableRowColumn>
+              <TableRowColumn>{d.i}</TableRowColumn>
+              <TableRowColumn>{d.date}</TableRowColumn>
+              <TableRowColumn>{numeral(d.interest).format('0,0.00')}</TableRowColumn>
+              <TableRowColumn>{numeral(d.amortization).format('0,0.00')}</TableRowColumn>
+              <TableRowColumn>{numeral(quote).format('0,0.00')}</TableRowColumn>
+              <TableRowColumn>{numeral(d.balance).format('0,0.00')}</TableRowColumn>
             </TableRow>
           )
         })

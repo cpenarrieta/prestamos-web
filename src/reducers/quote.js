@@ -1,9 +1,9 @@
 import {
-  UPDATE_QUOTE,
-  UPDATE_MONEDA,
+  UPDATE_AMOUNT,
+  UPDATE_CURRENCY,
   UPDATE_SHOW_SLIDER,
-  UPDATE_CUOTAS_DOBLES,
-  UPDATE_CUOTAS,
+  UPDATE_DOUBLE_QUOTES,
+  UPDATE_TERM,
   START_QUOTE_SUBMIT,
   DONE_QUOTE_SUBMIT,
   START_FINISH_QUOTE,
@@ -12,12 +12,12 @@ import {
 } from '../actions/synchronous/quote';
 
 const initialState = {
-  quoteSelected: 50000,
-  quotes: [5000, 10000, 20000, 30000, 50000, 100000, 150000, 200000, 250000, 300000],
-  moneda: "S/.",
+  amountSelected: 50000,
+  amounts: [5000, 10000, 20000, 30000, 50000, 100000, 150000, 200000, 250000, 300000],
+  currency: "S/.",
   showSlider: false,
-  cuotasDobles: false,
-  cuotas: 24,
+  doubleQuotes: false,
+  term: 24,
   submitting: false,
   quotesResults: [],
   finishResults: null
@@ -25,20 +25,20 @@ const initialState = {
 
 function quote(state = initialState, action) {
   switch (action.type) {
-    case UPDATE_QUOTE: {
-      return {...state, quoteSelected: action.quote, showSlider: action.hideSlider ? false : true};
+    case UPDATE_AMOUNT: {
+      return {...state, amountSelected: action.quote, showSlider: action.hideSlider ? false : true};
     }
-    case UPDATE_MONEDA: {
-      return {...state, moneda: action.moneda};
+    case UPDATE_CURRENCY: {
+      return {...state, currency: action.currency};
     }
     case UPDATE_SHOW_SLIDER: {
       return {...state, showSlider: true};
     }
-    case UPDATE_CUOTAS_DOBLES: {
-      return {...state, cuotasDobles: !state.cuotasDobles};
+    case UPDATE_DOUBLE_QUOTES: {
+      return {...state, doubleQuotes: !state.doubleQuotes};
     }
-    case UPDATE_CUOTAS: {
-      return {...state, cuotas: action.cuotas};
+    case UPDATE_TERM: {
+      return {...state, term: action.term};
     }
     case START_QUOTE_SUBMIT: {
       return {...state, submitting: true};
@@ -50,7 +50,7 @@ function quote(state = initialState, action) {
       return {...state, submitting: true};
     }
     case DONE_FINISH_QUOTE: {
-      return {...state, submitting: false, finishResults: action.result};
+      return {...state, ...initialState, submitting: false, finishResults: action.result};
     }
     case USER_LOGOUT: {
       return initialState;

@@ -4,7 +4,7 @@ import React, { PropTypes, Component } from 'react';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import Dialog from 'material-ui/Dialog';
-import {Card, CardActions, CardMedia, CardTitle} from 'material-ui/Card';
+import {Card, CardActions, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import DetailsTable from './DetailsTable';
 
 class QuoteItem extends Component {
@@ -47,10 +47,16 @@ class QuoteItem extends Component {
       <div>
         <Card className="quote-results-item">
           <CardMedia className="bank-img">
-            <img src={imgBank} alt={quote.bank} />
+            <img className="bank-img-tag" src={imgBank} alt={quote.bank} />
           </CardMedia>
-          <CardTitle title={`Cuota ${quote.currency} ${numeral(quote.quote).format('0,0')}`}
-            subtitle={`TEA ${numeral(quote.rate).format('0.00 %')}`} />
+          <CardTitle
+            style={{padding: "5px 16px 5px 16px"}}
+            title={`Cuota ${quote.currency} ${numeral(quote.quote).format('0,0')}`}
+            subtitle={`TEA ${numeral(quote.rate).format('0.00 %')}`}
+          />
+          <CardText style={{padding: "0 16px 0 16px", color: (quote.differentAmount ? "#FC8585" : "#82E0AA")}}>
+            {`Monto aprobado ${quote.differentAmount ? "menor al seleccionado" : ""} ${quote.currency} ${numeral(quote.amount).format('0,0')}`}
+          </CardText>
           <CardActions className="quote-results-buttons" >
             <FlatButton label="Detalle" onTouchTap={this.handleDetalleOpen} primary={true} />
             <RaisedButton label="Seleccionar" onTouchTap={this.handleSelOpen} primary={true} style={{marginRight: 0}} />
@@ -74,7 +80,7 @@ class QuoteItem extends Component {
           autoScrollBodyContent={true}
         >
           <div style={{marginTop: "10px"}}>
-            <DetailsTable details={quote.details} />
+            <DetailsTable details={quote.details} quote={quote.quote} currency={quote.currency} />
           </div>
         </Dialog>
       </div>

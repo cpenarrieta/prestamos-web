@@ -9,72 +9,85 @@ import Divider from 'material-ui/Divider';
 import QuoteItem from './QuoteItem';
 
 function QuoteView(props) {
-  const {moneda, quotes, quoteSelected, updateQuote, updateMoneda, showSlider, quoteSubmit,
-    updateShowSlider, cuotasDobles, cuotas, updateCuotas, updateCuotasDobles,
+  const {currency, amounts, amountSelected, updateAmount, updateCurrency, showSlider, quoteSubmit,
+    updateShowSlider, doubleQuotes, term, updateTerm, updateDoubleQuotes,
     quotesResults, finishQuote
   } = props;
 
-  function handleSelectQuote(e, quote) {
+  function handleSelectAmount(e, amount) {
     e.preventDefault();
-    updateQuote(quote, true);
+    updateAmount(amount, true);
   }
 
-  function handleUpdateMoneda(e, monedaSelected) {
+  function handleUpdateCurrency(e, currencySelected) {
     e.preventDefault();
-    updateMoneda(monedaSelected);
+    updateCurrency(currencySelected);
   }
 
   function handleOnChangeQuote(e, value) {
-    updateQuote(value);
+    updateAmount(value);
   }
 
-  function handleOtroMonto(e) {
+  function handleOtherAmount(e) {
     e.preventDefault();
     updateShowSlider();
   }
 
-  function handleOnChangeCuotas(e, value) {
-    updateCuotas(value);
+  function handleOnChangeTerm(e, value) {
+    updateTerm(value);
   }
 
-  function handleOnChangeCuotasDobles(e) {
-    updateCuotasDobles();
+  function handleOnChangeDoubleQuotes(e) {
+    updateDoubleQuotes();
   }
 
   function handleQuoteSubmit(e) {
-    quoteSubmit({moneda, quoteSelected, cuotas, cuotasDobles});
+    quoteSubmit({currency, amountSelected, term, doubleQuotes});
   }
 
   return (
     <div className="quote">
       <Paper zDepth={2} rounded={false} className="quote-paper" >
       <h2 className="quote-paper-item">Cotice su Préstamo</h2>
-        <div className="quote-paper-item quote-paper-row monedas">
-          <span className="moneda-text">Moneda</span>
-          <FlatButton label="S/." primary={!(moneda === "S/.")} secondary={moneda === "S/."} onTouchTap={(e) => handleUpdateMoneda(e, "S/.")} />
-          <FlatButton label="$" primary={!(moneda === "$")} secondary={moneda === "$"} onTouchTap={(e) => handleUpdateMoneda(e, "$")} />
+        <div className="quote-paper-item quote-paper-row currency">
+          <span className="currency-text">Moneda</span>
+          <FlatButton
+            label="S/."
+            primary={!(currency === "S/.")}
+            secondary={currency === "S/."}
+            onTouchTap={(e) => handleUpdateCurrency(e, "S/.")} />
+          <FlatButton
+            label="$"
+            primary={!(currency === "$")}
+            secondary={currency === "$"}
+            onTouchTap={(e) => handleUpdateCurrency(e, "$")} />
         </div>
         <div className="quote-paper-item quote-paper-row quote-amounts">
-          <span className="moneda-text">Monto del Prestamo</span>
+          <span className="currency-text">Monto del Prestamo</span>
           {
-            _.map(quotes, (quote, key) => {
-              const isSelected = quoteSelected === quote;
-              return (<FlatButton key={key} label={`${moneda} ${formatNum(quote)}`} primary={!isSelected} secondary={isSelected} onTouchTap={(e) => handleSelectQuote(e, quote)}/>)
+            _.map(amounts, (amount, key) => {
+              const isSelected = amountSelected === amount;
+              return (<FlatButton
+                        key={key}
+                        label={`${currency} ${formatNum(amount)}`}
+                        primary={!isSelected}
+                        secondary={isSelected}
+                        onTouchTap={(e) => handleSelectAmount(e, amount)} />)
             })
           }
-          <FlatButton label="otro monto" primary={!showSlider} secondary={showSlider} onTouchTap={handleOtroMonto} />
+          <FlatButton label="otro monto" primary={!showSlider} secondary={showSlider} onTouchTap={handleOtherAmount} />
         </div>
         <div className={`quote-paper-item quote-paper-row quote-slider ${showSlider ? "" : "slider-hidden"}`}>
-          <span className="quote-text">{`${moneda} ${formatNum(quoteSelected)}`}</span>
-          <Slider className="quote-slider-item" step={1000} value={quoteSelected} min={5000} max={300000} onChange={handleOnChangeQuote} />
+          <span className="quote-text">{`${currency} ${formatNum(amountSelected)}`}</span>
+          <Slider className="quote-slider-item" step={1000} value={amountSelected} min={5000} max={300000} onChange={handleOnChangeQuote} />
         </div>
         <div className="quote-paper-item quote-paper-row quote-slider">
-          <span className="moneda-text text-center">Numero de cuotas</span>
-          <span className="quote-text">{cuotas}</span>
-          <Slider className="quote-slider-item-cuotas" step={1} value={cuotas} min={3} max={60} onChange={handleOnChangeCuotas} />
+          <span className="currency-text text-center">Numero de cuotas</span>
+          <span className="quote-text">{term}</span>
+          <Slider className="quote-slider-item-cuotas" step={1} value={term} min={3} max={60} onChange={handleOnChangeTerm} />
         </div>
         <div className="quote-paper-item quote-paper-row">
-          <Toggle label="Cuotas Dobles (Julio / Diciembre)" defaultToggled={cuotasDobles} onToggle={handleOnChangeCuotasDobles} labelStyle={{color: "#BDBDBD"}} />
+          <Toggle label="Cuotas Dobles (Julio / Diciembre)" defaultToggled={doubleQuotes} onToggle={handleOnChangeDoubleQuotes} labelStyle={{color: "#BDBDBD"}} />
         </div>
         <RaisedButton label="Cotizar" primary={true} className="quote-paper-item btn-quote" onTouchTap={handleQuoteSubmit}/>
         <Divider />

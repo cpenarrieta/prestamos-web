@@ -15,10 +15,10 @@ function mapStateToProps({quote}) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    updateQuote: (quote, hideSlider) => dispatch(actions.updateQuote(quote, hideSlider)),
-    updateMoneda: (moneda) => dispatch(actions.updateMoneda(moneda)),
-    updateCuotas: (cuotas) => dispatch(actions.updateCuotas(cuotas)),
-    updateCuotasDobles: () => dispatch(actions.updateCuotasDobles()),
+    updateAmount: (quote, hideSlider) => dispatch(actions.updateAmount(quote, hideSlider)),
+    updateCurrency: (currency) => dispatch(actions.updateCurrency(currency)),
+    updateTerm: (term) => dispatch(actions.updateTerm(term)),
+    updateDoubleQuotes: () => dispatch(actions.updateDoubleQuotes()),
     updateShowSlider: () => dispatch(actions.updateShowSlider()),
     quoteSubmit: (request) => dispatch(actions.quoteSubmit(request)),
     finishQuote: (request) => dispatch(actions.finishQuote(request)),
