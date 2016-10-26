@@ -9,6 +9,7 @@ import {
   START_FINISH_QUOTE,
   DONE_FINISH_QUOTE,
   USER_LOGOUT,
+  DO_RELOAD_DATA,
 } from '../actions/synchronous/quote';
 
 const initialState = {
@@ -18,9 +19,11 @@ const initialState = {
   showSlider: false,
   doubleQuotes: false,
   term: 24,
-  submitting: false,
   quotesResults: [],
-  finishResults: null
+  finishResults: null,
+  submitting: false,
+  firstClick: true,
+  reloadData: false,
 };
 
 function quote(state = initialState, action) {
@@ -44,7 +47,10 @@ function quote(state = initialState, action) {
       return {...state, submitting: true};
     }
     case DONE_QUOTE_SUBMIT: {
-      return {...state, submitting: false, quotesResults: action.quotesResults};
+      return {...state, submitting: false, quotesResults: action.quotesResults, firstClick: false, reloadData: false};
+    }
+    case DO_RELOAD_DATA: {
+      return {...state, reloadData: state.firstClick === false ? true : false,}
     }
     case START_FINISH_QUOTE: {
       return {...state, submitting: true};

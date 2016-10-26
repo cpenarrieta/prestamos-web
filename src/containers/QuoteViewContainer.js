@@ -1,12 +1,21 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import QuoteView from '../components/QuoteView';
 import actions from "../actions/index.js";
 
-function QuoteViewContainer(props) {
-  return (
-    <QuoteView {...props}/>
-  );
+class QuoteViewContainer extends Component {
+  componentDidUpdate() {
+    const { reloadData, quoteSubmit, currency, amountSelected, doubleQuotes, term } = this.props;
+    if (reloadData) {
+      quoteSubmit({ currency, amountSelected, term, doubleQuotes });
+    }
+  }
+
+  render() {
+    return (
+      <QuoteView {...this.props}/>
+    );
+  }
 }
 
 function mapStateToProps({quote}) {
@@ -22,6 +31,7 @@ function mapDispatchToProps(dispatch) {
     updateShowSlider: () => dispatch(actions.updateShowSlider()),
     quoteSubmit: (request) => dispatch(actions.quoteSubmit(request)),
     finishQuote: (request) => dispatch(actions.finishQuote(request)),
+    doReloadData: () => dispatch(actions.doReloadData()),
   };
 }
 

@@ -9,19 +9,21 @@ import Divider from 'material-ui/Divider';
 import QuoteItem from './QuoteItem';
 
 function QuoteView(props) {
-  const {currency, amounts, amountSelected, updateAmount, updateCurrency, showSlider, quoteSubmit,
-    updateShowSlider, doubleQuotes, term, updateTerm, updateDoubleQuotes,
-    quotesResults, finishQuote
+  const { currency, amounts, amountSelected, updateAmount, updateCurrency,
+    showSlider, quoteSubmit, updateShowSlider, doubleQuotes, term, updateTerm,
+    updateDoubleQuotes, quotesResults, finishQuote, doReloadData
   } = props;
 
   function handleSelectAmount(e, amount) {
     e.preventDefault();
     updateAmount(amount, true);
+    doReloadData();
   }
 
   function handleUpdateCurrency(e, currencySelected) {
     e.preventDefault();
     updateCurrency(currencySelected);
+    doReloadData();
   }
 
   function handleOnChangeQuote(e, value) {
@@ -39,6 +41,7 @@ function QuoteView(props) {
 
   function handleOnChangeDoubleQuotes(e) {
     updateDoubleQuotes();
+    doReloadData();
   }
 
   function handleQuoteSubmit(e) {
@@ -75,21 +78,52 @@ function QuoteView(props) {
                         onTouchTap={(e) => handleSelectAmount(e, amount)} />)
             })
           }
-          <FlatButton label="otro monto" primary={!showSlider} secondary={showSlider} onTouchTap={handleOtherAmount} />
+          <FlatButton
+            label="otro monto"
+            primary={!showSlider}
+            secondary={showSlider}
+            onTouchTap={handleOtherAmount}
+          />
         </div>
         <div className={`quote-paper-item quote-paper-row quote-slider ${showSlider ? "" : "slider-hidden"}`}>
           <span className="quote-text">{`${currency} ${formatNum(amountSelected)}`}</span>
-          <Slider className="quote-slider-item" step={1000} value={amountSelected} min={5000} max={300000} onChange={handleOnChangeQuote} />
+          <Slider
+            className="quote-slider-item"
+            step={1000}
+            value={amountSelected}
+            min={5000}
+            max={300000}
+            onChange={handleOnChangeQuote}
+            onDragStop={doReloadData}
+          />
         </div>
         <div className="quote-paper-item quote-paper-row quote-slider">
           <span className="currency-text text-center">Numero de cuotas</span>
           <span className="quote-text">{term}</span>
-          <Slider className="quote-slider-item-cuotas" step={1} value={term} min={3} max={60} onChange={handleOnChangeTerm} />
+          <Slider
+            className="quote-slider-item-cuotas"
+            step={1}
+            value={term}
+            min={3}
+            max={60}
+            onChange={handleOnChangeTerm}
+            onDragStop={doReloadData}
+          />
         </div>
         <div className="quote-paper-item quote-paper-row">
-          <Toggle label="Cuotas Dobles (Julio / Diciembre)" defaultToggled={doubleQuotes} onToggle={handleOnChangeDoubleQuotes} labelStyle={{color: "#BDBDBD"}} />
+          <Toggle
+            label="Cuotas Dobles (Julio / Diciembre)"
+            defaultToggled={doubleQuotes}
+            onToggle={handleOnChangeDoubleQuotes}
+            labelStyle={{color: "#BDBDBD"}}
+          />
         </div>
-        <RaisedButton label="Cotizar" primary={true} className="quote-paper-item btn-quote" onTouchTap={handleQuoteSubmit}/>
+        <RaisedButton
+          label="Cotizar"
+          primary={true}
+          className="quote-paper-item btn-quote"
+          onTouchTap={handleQuoteSubmit}
+        />
         <Divider />
         <div className="quote-results">
         {

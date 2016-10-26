@@ -8,6 +8,7 @@ export const DONE_QUOTE_SUBMIT = 'quote/DONE_QUOTE_SUBMIT';
 export const START_FINISH_QUOTE = 'quote/START_FINISH_QUOTE';
 export const DONE_FINISH_QUOTE = 'quote/DONE_FINISH_QUOTE';
 export const USER_LOGOUT = 'quote/USER_LOGOUT';
+export const DO_RELOAD_DATA = 'quote/DO_RELOAD_DATA';
 
 export function updateAmount(quote, hideSlider) {
   return { type: UPDATE_AMOUNT, quote, hideSlider };
@@ -47,4 +48,8 @@ export function doneFinishQuote(result) {
 
 export function userLogOut() {
   return { type: USER_LOGOUT };
+}
+
+export function doReloadData() {
+  return { type: DO_RELOAD_DATA };
 }
