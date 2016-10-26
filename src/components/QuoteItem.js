@@ -18,6 +18,13 @@ class QuoteItem extends Component {
   handleDetalleOpen = () => this.setState({detalleOpen: true});
   handleDetalleClose = () => this.setState({detalleOpen: false});
   handleFinishQuote = () => this.props.finishQuote({quote: this.props.quote});
+  getDifferentAmountText = (differentAmount, currency, amount) => {
+    if (differentAmount) {
+      return `Monto aprobado ${currency} ${numeral(amount).format('0,0')} (menor al seleccionado)`
+    } else {
+      return `Monto aprobado ${currency} ${numeral(amount).format('0,0')}`
+    }
+  }
 
   render() {
     const {quote} = this.props;
@@ -42,6 +49,7 @@ class QuoteItem extends Component {
         onTouchTap={this.handleDetalleClose}
       />
     ];
+    const differentAmountText = this.getDifferentAmountText(quote.differentAmount, quote.currency, quote.amount);
 
     return (
       <div>
@@ -55,7 +63,7 @@ class QuoteItem extends Component {
             subtitle={`TEA ${numeral(quote.rate).format('0.00 %')}`}
           />
           <CardText style={{padding: "0 16px 0 16px", color: (quote.differentAmount ? "#FC8585" : "#82E0AA")}}>
-            {`Monto aprobado ${quote.differentAmount ? "menor al seleccionado" : ""} ${quote.currency} ${numeral(quote.amount).format('0,0')}`}
+            {differentAmountText}
           </CardText>
           <CardActions className="quote-results-buttons" >
             <FlatButton label="Detalle" onTouchTap={this.handleDetalleOpen} primary={true} />
