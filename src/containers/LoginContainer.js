@@ -23,6 +23,7 @@ function mapDispatchToProps(dispatch) {
     updateEmail: (email) => dispatch(actions.updateEmail(email)),
     updateCelular: (celular) => dispatch(actions.updateCelular(celular)),
     signin: (user) => dispatch(actions.signin(user)),
+    validateLogin: (user) => dispatch(actions.validateLogin(user)),
     updateUbigeo: (ubigeo) => dispatch(actions.updateUbigeo(ubigeo)),
     updateFechaEmision: (fechaEmision) => dispatch(actions.updateFechaEmision(fechaEmision)),
     updateFechaNacimiento: (fechaNacimiento) => dispatch(actions.updateFechaNacimiento(fechaNacimiento)),

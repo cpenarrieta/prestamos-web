@@ -9,6 +9,11 @@ export const UPDATE_FECHA_EMISION = 'auth/UPDATE_FECHA_EMISION';
 export const UPDATE_FECHA_NACIMIENTO = 'auth/UPDATE_FECHA_NACIMIENTO';
 export const UPDATE_APELLIDOS = 'auth/UPDATE_APELLIDOS';
 export const UPDATE_NOMBRE = 'auth/UPDATE_NOMBRE';
+export const VALIDATE_LOGIN = 'auth/VALIDATE_LOGIN';
+
+export function validateLogin(user) {
+  return { type: VALIDATE_LOGIN, user };
+}
 
 export function submitLogin() {
   return { type: SUBMIT_LOGIN };

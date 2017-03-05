@@ -11,7 +11,7 @@ function requireAuth(nextState, replace, store) {
   const { dni } = store.getState().auth.currentUser || {};
   if (!dni) {
     replace({
-      pathname: '/login',
+      pathname: '/register',
       state: { nextPathName: nextState.location.pathname },
     });
   }
@@ -56,7 +56,7 @@ function routes(store) {
         <Route path="/cotizacion" component={QuoteViewContainer} />
         <Route path="/done-cotizacion" component={FinishQuoteViewContainer} onEnter={(nextState, replace) => redirectIfNull(replace, store) } />
       </Route>
-      <Route path="/login" component={LoginContainer} onEnter={(nextState, replace) => redirectIfLoggedIn(replace, store) }/>
+      <Route path="/register" component={LoginContainer} onEnter={(nextState, replace) => redirectIfLoggedIn(replace, store) }/>
       <Route path="/acceso-bancos" component={BankDashbordContainer} store={store} onEnter={(nextState, replace) => requireAdminAuth(nextState, replace, store)} />
       <Route path="/login-bancos" component={BankLoginContainer} onEnter={(nextState, replace) => redirectBankIfLoggedIn(replace, store) } />
     </Router>

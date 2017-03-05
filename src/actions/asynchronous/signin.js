@@ -8,8 +8,6 @@ export default function signin(user, nextPath) {
     const { apiUrl } = getState().config;
     const url = `${apiUrl}/auth/signin/`;
 
-    dispatch(sync.submitLogin());
-
     xr.post(url, user)
       .then(
         (response) => {

@@ -51,12 +51,20 @@ class LoginView extends Component {
   handleOpenFechaEmisionDialog = () => this.setState({fechaEmisionDialogOpen: !this.state.fechaEmisionDialogOpen});
   handleCloseFechaEmisionDialog = () => this.setState({fechaEmisionDialogOpen: false});
   handleLogin = (e) => {
-    const {dni, nombre, email, celular, ubigeo, fechaEmision, fechaNacimiento, apellidos} = this.props;
-    this.props.signin({dni, apellidos, nombre, fechaNacimiento, ubigeo, fechaEmision, email, celular});
+    const {dni, nombre, email, celular, ubigeo, fechaEmision, fechaNacimiento, apellidos, validateLogin} = this.props;
+    validateLogin({dni, apellidos, nombre, fechaNacimiento, ubigeo, fechaEmision, email, celular});
   }
 
   render() {
-    const {dni, nombre, email, celular, ubigeo, fechaEmision, fechaNacimiento, apellidos} = this.props;
+    const {
+      dni, nombre, email, celular, ubigeo, fechaEmision, fechaNacimiento, apellidos,
+      dniError, ubigeoError, celularError, emailError, apellidosError, nombreError,
+      submitting, signin
+    } = this.props;
+
+    if (submitting) {
+      signin({dni, apellidos, nombre, fechaNacimiento, ubigeo, fechaEmision, email, celular});
+    }
 
     return (
       <div className="login">
@@ -64,31 +72,85 @@ class LoginView extends Component {
           <h2 className="login-paper-item">IDENTIFICACIÓN DEL USUARIO</h2>
           <div className="login-paper-item login-paper-row">
             <i className="material-icons login-icon clicable" onTouchTap={this.handleOpenDniDialog}>featured_video</i>
-            <TextField hintText="Ingrese su DNI" floatingLabelText="DNI" type="number" value={dni} onChange={this.handleChangeDni}/>
+            <TextField
+              id="dni-id"
+              hintText="Ingrese su DNI"
+              floatingLabelText="DNI"
+              type="number"
+              value={dni}
+              onChange={this.handleChangeDni}
+              errorText={dniError}
+            />
             <i className="material-icons login-icon clicable" onTouchTap={this.handleOpenFechaEmisionDialog}>event</i>
-            <DatePicker className="" floatingLabelText="Fecha de Emisión de su Dni" hintText="Fecha de Emisión de Dni" value={fechaEmision} onChange={this.handleFechaEmision} />
+            <DatePicker id="emission-date-id" className="" floatingLabelText="Fecha de Emisión de su Dni" hintText="Fecha de Emisión de Dni" value={fechaEmision} onChange={this.handleFechaEmision} />
           </div>
           <div className="login-paper-item login-paper-row">
-          <i className="material-icons login-icon">person</i>
-          <TextField hintText="Ingrese su Nombre" floatingLabelText="Nombre" type="text" value={nombre} onChange={this.handleChangeNombre}/>
             <i className="material-icons login-icon">person</i>
-            <TextField hintText="Ingrese sus Apellidos" floatingLabelText="Apellidos" type="text" value={apellidos} onChange={this.handleChangeApellidos}/>
+            <TextField
+              id="name-id"
+              hintText="Ingrese su Nombre"
+              floatingLabelText="Nombre"
+              type="text"
+              value={nombre}
+              onChange={this.handleChangeNombre}
+              errorText={nombreError}
+            />
+            <i className="material-icons login-icon">person</i>
+            <TextField
+              id="last-name-id"
+              hintText="Ingrese sus Apellidos"
+              floatingLabelText="Apellidos"
+              type="text"
+              value={apellidos}
+              onChange={this.handleChangeApellidos}
+              errorText={apellidosError}
+            />
           </div>
           <div className="login-paper-item login-paper-row">
             <i className="material-icons login-icon">event</i>
-            <DatePicker className="" floatingLabelText="Fecha de Nacimiento" hintText="Fecha de Nacimiento" value={fechaNacimiento} onChange={this.handleFechaNacimiento} />
+            <DatePicker id="birthdate-id" className="" floatingLabelText="Fecha de Nacimiento" hintText="Fecha de Nacimiento" value={fechaNacimiento} onChange={this.handleFechaNacimiento} />
             <i className="material-icons login-icon clicable" onTouchTap={this.handleOpenUbigeoDialog}>location_on</i>
-            <TextField hintText="Ingrese Ubigeo ubicado en su Dni" floatingLabelText="Ubigeo" type="number" value={ubigeo} onChange={this.handleChangeUbigeo}/>
+            <TextField
+              id="ubigeo-id"
+              hintText="Ingrese Ubigeo ubicado en su Dni"
+              floatingLabelText="Ubigeo"
+              type="number"
+              value={ubigeo}
+              onChange={this.handleChangeUbigeo}
+              errorText={ubigeoError}
+            />
           </div>
           <div className="login-paper-item login-paper-row">
             <i className="material-icons login-icon">email</i>
-            <TextField hintText="Ingrese su email" floatingLabelText="Email" value={email} onChange={this.handleChangeEmail}/>
+            <TextField
+              id="email-id"
+              hintText="Ingrese su email"
+              floatingLabelText="Email"
+              value={email}
+              onChange={this.handleChangeEmail}
+              errorText={emailError}
+            />
             <i className="material-icons login-icon">phone</i>
-            <TextField hintText="Ingrese su celular" floatingLabelText="Celular" className="login-paper-item" type="number" value={celular} onChange={this.handleChangeCelular}/>
+            <TextField
+              id="celphone-id"
+              hintText="Ingrese su celular"
+              floatingLabelText="Celular"
+              className="login-paper-item"
+              type="number"
+              value={celular}
+              onChange={this.handleChangeCelular}
+              errorText={celularError}
+            />
           </div>
           <div className="login-paper-item login-paper-row">
           </div>
-          <RaisedButton label="Ingresar" primary={true} className="login-paper-item btn-login" onTouchTap={this.handleLogin}/>
+          <RaisedButton
+            id="register-btn-id"
+            label="Ingresar"
+            primary={true}
+            className="login-paper-item btn-login"
+            onTouchTap={this.handleLogin}
+          />
         </Paper>
         {getDialog(this.state.dniDialogOpen, this.handleCloseDniDialog, "DNI", "dni.png")}
         {getDialog(this.state.ubigeoDialogOpen, this.handleCloseUbigeoDialog, "Ubigeo", "ubigeo.png")}

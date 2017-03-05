@@ -11,7 +11,7 @@ class HeaderNavContainer extends Component {
     Cookies.remove('auth');
     this.props.receiveUser({});
     this.props.userLogOut();
-    browserHistory.push('/login');
+    browserHistory.push('/register');
   }
 
   handleTitleTouchTap = (e) => {
