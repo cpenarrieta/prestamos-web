@@ -22,7 +22,7 @@ class HeaderNav extends Component {
         cursor: 'pointer',
       },
     };
-    let logOutComp = isLogin ? null : (<FlatButton label="Cerrar Sesion" onTouchTap={this.props.handleSignOut} />);
+    let logOutComp = isLogin ? null : (<FlatButton id="cerrar-sesion-id" label="Cerrar Sesion" onTouchTap={this.props.handleSignOut} />);
     let touchMenuMethod = isLogin ? (() => {}) : this.handleTouchMenu;
 
     return (
@@ -37,7 +37,7 @@ class HeaderNav extends Component {
           <MenuItem onTouchTap={this.handleClose}>Menu Item 2</MenuItem>
         </Drawer>
         <AppBar
-          title={<span style={styles.title}>Prestamos Web (necesitamos un nombre)</span>}
+          title={<span style={styles.title}>Prestamos Web</span>}
           iconElementLeft={<IconButton onTouchTap={touchMenuMethod}><NavigationMenu /></IconButton>}
           iconElementRight={logOutComp}
           onTitleTouchTap={this.props.handleTitleTouchTap}

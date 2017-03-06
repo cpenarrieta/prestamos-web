@@ -36,6 +36,7 @@ class QuoteItem extends Component {
         onTouchTap={this.handleSelClose}
       />,
       <FlatButton
+        id="continuar-id"
         label="Continuar"
         primary={true}
         keyboardFocused={true}
@@ -66,8 +67,8 @@ class QuoteItem extends Component {
             {differentAmountText}
           </CardText>
           <CardActions className="quote-results-buttons" >
-            <FlatButton label="Detalle" onTouchTap={this.handleDetalleOpen} primary={true} />
-            <RaisedButton label="Seleccionar" onTouchTap={this.handleSelOpen} primary={true} style={{marginRight: 0}} />
+            <FlatButton id="detail-id" label="Detalle" onTouchTap={this.handleDetalleOpen} primary={true} />
+            <RaisedButton id="select-id" label="Seleccionar" onTouchTap={this.handleSelOpen} primary={true} style={{marginRight: 0}} />
           </CardActions>
         </Card>
         <Dialog

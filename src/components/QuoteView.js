@@ -55,11 +55,13 @@ function QuoteView(props) {
         <div className="quote-paper-item quote-paper-row currency">
           <span className="currency-text">Moneda</span>
           <FlatButton
+            id="soles-id"
             label="S/."
             primary={!(currency === "S/.")}
             secondary={currency === "S/."}
             onTouchTap={(e) => handleUpdateCurrency(e, "S/.")} />
           <FlatButton
+            id="dollars-id"
             label="$"
             primary={!(currency === "$")}
             secondary={currency === "$"}
@@ -71,6 +73,7 @@ function QuoteView(props) {
             _.map(amounts, (amount, key) => {
               const isSelected = amountSelected === amount;
               return (<FlatButton
+                        id={`soles-id-key`}
                         key={key}
                         label={`${currency} ${formatNum(amount)}`}
                         primary={!isSelected}
@@ -79,15 +82,17 @@ function QuoteView(props) {
             })
           }
           <FlatButton
+            id="other-amount-id"
             label="otro monto"
             primary={!showSlider}
             secondary={showSlider}
             onTouchTap={handleOtherAmount}
           />
         </div>
-        <div className={`quote-paper-item quote-paper-row quote-slider ${showSlider ? "" : "slider-hidden"}`}>
+        <div className={`quote-paper-item quote-paper-row quote-slider ${showSlider ? "slider-visible" : "slider-hidden"}`}>
           <span className="quote-text">{`${currency} ${formatNum(amountSelected)}`}</span>
           <Slider
+            id="amount-id"
             className="quote-slider-item"
             step={1000}
             value={amountSelected}
@@ -101,6 +106,7 @@ function QuoteView(props) {
           <span className="currency-text text-center">Numero de cuotas</span>
           <span className="quote-text">{term}</span>
           <Slider
+            id="cuotas-id"
             className="quote-slider-item-cuotas"
             step={1}
             value={term}
@@ -112,6 +118,7 @@ function QuoteView(props) {
         </div>
         <div className="quote-paper-item quote-paper-row">
           <Toggle
+            id="doble-cuotas-id"
             label="Cuotas Dobles (Julio / Diciembre)"
             defaultToggled={doubleQuotes}
             onToggle={handleOnChangeDoubleQuotes}
@@ -119,6 +126,7 @@ function QuoteView(props) {
           />
         </div>
         <RaisedButton
+          id="cotizar-id"
           label="Cotizar"
           primary={true}
           className="quote-paper-item btn-quote"
